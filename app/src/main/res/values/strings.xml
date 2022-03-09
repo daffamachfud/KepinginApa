@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">KepinginApa</string>
+    <string name="desc_img_home_wishlist">ImageViewWihslistHome</string>
+    <string name="desc_category_img_home_wishlist">CategoryImageViewWihslistHome</string>
+    <string name="title">Title</string>
+    <string name="category">Category</string>
+    <string name="description">description</string>
+    <string name="price">price</string>
+    <string name="version">version</string>
+
+</resources>
