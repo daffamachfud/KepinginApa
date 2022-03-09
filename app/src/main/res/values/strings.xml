@@ -6,6 +6,12 @@
     <string name="category">Category</string>
     <string name="description">description</string>
     <string name="price">price</string>
+    <string name="username">Username</string>
     <string name="version">version</string>
-
+    <string name="mulai">Mulai</string>
+    <string name="desc_landing_page">Aplikasi sederhana untuk mencatat keinginan apapun\n yang kamu targetkan,dengan aplikasi ini kamu bisa \n mencatat, menyimpan, mentargetkan keinginan kamu \n itu dengan mudah</string>
+    <string name="profil">Profil</string>
+    <string name="tuliskan_username_kamu">Tuliskan username kamu</string>
+    <string name="tuliskan_username">Tuliskan Username</string>
+    <string name="kembali">Kembali</string>
 </resources>

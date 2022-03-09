@@ -9,7 +9,8 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.daffa.kepinginapa.databinding.ActivitySplashScreenBinding
 import com.daffa.kepinginapa.ui.home.MainActivity
-
+import com.daffa.kepinginapa.ui.landingpage.LandingPageActivity
+import com.daffa.kepinginapa.utils.AppPreference
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -32,10 +33,19 @@ class SplashScreenActivity : AppCompatActivity() {
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
+
+        val prefLandingPage = AppPreference(this)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (prefLandingPage.getLandingPage()) {
+                prefLandingPage.setLandingPage(false)
+                val intentLanding = Intent(this, LandingPageActivity::class.java)
+                startActivity(intentLanding)
+                finish()
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }, 3000)
     }
 }

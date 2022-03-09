@@ -1,12 +1,25 @@
 package com.daffa.kepinginapa.ui.landingpage
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.daffa.kepinginapa.R
+import androidx.appcompat.app.AppCompatActivity
+import com.daffa.kepinginapa.databinding.ActivityLandingPageBinding
 
 class LandingPageActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLandingPageBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landing_page)
+        binding = ActivityLandingPageBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        binding.btnStartLanding.setOnClickListener {
+            val intentInput = Intent(this, InputDataUserActivity::class.java)
+            startActivity(intentInput)
+        }
+
+
     }
 }
