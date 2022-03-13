@@ -18,6 +18,7 @@ class LandingPageActivity : AppCompatActivity() {
         binding.btnStartLanding.setOnClickListener {
             val intentInput = Intent(this, InputDataUserActivity::class.java)
             startActivity(intentInput)
+            finish()
         }
 
 

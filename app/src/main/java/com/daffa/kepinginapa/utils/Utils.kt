@@ -6,7 +6,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
 object Utils {
-    fun getCategoryIcon(category:String):Int{
+    fun getCategoryIcon(category:String?):Int{
         when(category){
             else->{
              return R.drawable.ic_error_img
@@ -14,7 +14,7 @@ object Utils {
         }
     }
 
-    fun Double.formatCurrencyRupiah():String{
+    fun Double?.formatCurrencyRupiah():String{
         val formatter = DecimalFormat("###,###,###.##")
         val formatRp = DecimalFormatSymbols()
         formatRp.groupingSeparator = '.'

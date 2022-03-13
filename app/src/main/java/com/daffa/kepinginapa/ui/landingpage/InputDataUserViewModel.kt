@@ -1,13 +1,17 @@
 package com.daffa.kepinginapa.ui.landingpage
 
 import androidx.lifecycle.ViewModel
+import com.daffa.kepinginapa.data.AppRepository
+import com.daffa.kepinginapa.data.local.entity.UserEntity
 
-class InputDataUserViewModel : ViewModel() {
-    private lateinit var uriImage: String
-    private lateinit var userName: String
+class InputDataUserViewModel(private val appRepository: AppRepository) : ViewModel() {
 
-    fun setDataUser(uriImage: String, userName: String) {
-        this.uriImage = uriImage
-        this.userName = userName
+    fun inputDataUser(uriImage: String, userName: String) {
+        appRepository.insertUser(
+            UserEntity(
+                0, userName, uriImage
+            )
+        )
     }
+
 }

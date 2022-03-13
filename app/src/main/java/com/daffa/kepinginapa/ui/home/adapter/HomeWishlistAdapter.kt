@@ -1,14 +1,16 @@
 package com.daffa.kepinginapa.ui.home.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.daffa.kepinginapa.R
-import com.daffa.kepinginapa.data.WishlistEntity
+import com.daffa.kepinginapa.data.local.entity.WishlistEntity
 import com.daffa.kepinginapa.databinding.HomeWishlistAdapterBinding
 import com.daffa.kepinginapa.utils.Utils
 import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
+import java.io.File
 
 class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHolder>() {
     private var listHomeWishlist = ArrayList<WishlistEntity>()
@@ -38,26 +40,19 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
         RecyclerView.ViewHolder(binding.root) {
         fun bind(wishlist: WishlistEntity) {
             with(binding) {
-                Glide.with(itemView.context)
-                    .load(wishlist.image)
-                    .placeholder(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error_img)
-                    .into(imgHomeWishlist)
-
+                imgHomeWishlist.setImageURI(Uri.parse(wishlist.imagePath))
                 titleHomeWishlist.text = wishlist.title
 
                 categoryHomeWishlist.text = wishlist.category
-                categoryHomeWishlist.setCompoundDrawablesWithIntrinsicBounds(
-                    Utils.getCategoryIcon(
-                        wishlist.category
-                    ), 0, 0, 0
-                )
+//                categoryHomeWishlist.setCompoundDrawablesWithIntrinsicBounds(
+//                    Utils.getCategoryIcon(
+//                        wishlist.title
+//                    ), 0, 0, 0
+//                )
 
                 priceHomeWishlist.text = wishlist.price.formatCurrencyRupiah()
                 descHomeWishlist.text = wishlist.note
-
             }
         }
     }
-
 }

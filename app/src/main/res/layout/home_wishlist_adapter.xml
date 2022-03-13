@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="148dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="24dp">
+    android:layout_height="wrap_content"
+    android:padding="24dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:layout_marginStart="8dp">
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/imgHomeWishlist"
             android:layout_width="120dp"
             android:layout_height="125dp"
             android:contentDescription="@string/desc_img_home_wishlist"
+            android:scaleType="centerCrop"
             android:src="@color/grey_app" />
 
         <TextView
             android:id="@+id/titleHomeWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_toEndOf="@+id/imgHomeWishlist"
             android:layout_marginStart="16dp"
-            android:ellipsize="end" />
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/imgHomeWishlist"
+            android:ellipsize="end"
+            android:text="@string/title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/categoryHomeWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/imgHomeWishlist"
             android:layout_below="@+id/titleHomeWishlist"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/imgHomeWishlist"
             android:text="@string/category"
             android:textColor="@color/black"
             app:drawableStartCompat="@color/grey_app" />
@@ -49,34 +48,28 @@
             android:id="@+id/priceHomeWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/imgHomeWishlist"
             android:layout_below="@+id/categoryHomeWishlist"
-            android:text="@string/price"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:textStyle="bold"
+            android:layout_toEndOf="@+id/imgHomeWishlist"
+            android:text="@string/price"
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descHomeWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_app"
-            android:textSize="12sp"
-            android:text="@string/description"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_toEndOf="@+id/imgHomeWishlist"
             android:layout_below="@+id/priceHomeWishlist"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"/>
-
-
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/imgHomeWishlist"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/description"
+            android:textColor="@color/grey_app"
+            android:textSize="12sp" />
     </RelativeLayout>
 
-
-
-
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>
