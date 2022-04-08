@@ -1,5 +1,6 @@
 package com.daffa.kepinginapa.ui.splashscreen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -12,6 +13,7 @@ import com.daffa.kepinginapa.ui.home.MainActivity
 import com.daffa.kepinginapa.ui.landingpage.LandingPageActivity
 import com.daffa.kepinginapa.utils.AppPreference
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
@@ -31,8 +33,6 @@ class SplashScreenActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
-        // we used the postDelayed(Runnable, time) method
-        // to send a message with a delayed time.
 
         val prefLandingPage = AppPreference(this)
         Handler(Looper.getMainLooper()).postDelayed({

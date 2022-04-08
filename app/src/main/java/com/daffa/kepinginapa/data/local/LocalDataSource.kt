@@ -18,8 +18,12 @@ class LocalDataSource private constructor(private val mAppDao: AppDao) {
 
     fun insertWish(wish: WishlistEntity) = mAppDao.insertWish(wish)
 
+    fun deleteWish(wish: WishlistEntity) = mAppDao.deleteWish(wish)
+
     fun getUserData(): LiveData<UserEntity> = mAppDao.getUserData()
 
     fun getWishlist(): LiveData<List<WishlistEntity>> = mAppDao.getWishlist()
+
+    fun getDetailWish(wishId : Int) : LiveData<WishlistEntity> = mAppDao.getDetailWish(wishId)
 
 }

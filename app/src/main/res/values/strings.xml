@@ -4,7 +4,7 @@
     <string name="desc_category_img_home_wishlist">CategoryImageViewWihslistHome</string>
     <string name="title">Title</string>
     <string name="category">Category</string>
-    <string name="description">description</string>
+    <string name="description">Deskripsi</string>
     <string name="price">price</string>
     <string name="username">Username</string>
     <string name="version">version</string>
@@ -21,4 +21,5 @@
     <string name="link">Link</string>
     <string name="harga_biaya">Harga/Biaya</string>
     <string name="submit">Submit</string>
+    <string name="terbeli">Terbeli</string>
 </resources>

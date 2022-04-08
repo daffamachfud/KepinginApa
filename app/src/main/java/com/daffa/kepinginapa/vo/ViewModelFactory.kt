@@ -7,6 +7,7 @@ import com.daffa.kepinginapa.data.AppRepository
 import com.daffa.kepinginapa.di.Injection
 import com.daffa.kepinginapa.ui.home.MainViewModel
 import com.daffa.kepinginapa.ui.landingpage.InputDataUserViewModel
+import com.daffa.kepinginapa.ui.wishlist.DetailWishViewModel
 import com.daffa.kepinginapa.ui.wishlist.WishListViewModel
 
 class ViewModelFactory private constructor(private val mAppRepository: AppRepository) :
@@ -32,6 +33,9 @@ class ViewModelFactory private constructor(private val mAppRepository: AppReposi
             }
             modelClass.isAssignableFrom(WishListViewModel::class.java) -> {
                 WishListViewModel(mAppRepository) as T
+            }
+            modelClass.isAssignableFrom(DetailWishViewModel::class.java) -> {
+                DetailWishViewModel(mAppRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

@@ -1,14 +1,14 @@
 package com.daffa.kepinginapa.utils
 
 import android.content.Context
+import androidx.preference.PreferenceManager
 
 internal class AppPreference(context: Context) {
     companion object {
-        private const val PREF_NAME = "app_preference"
         private const val LANDING_PAGE = "landing_page"
     }
 
-    private val preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun setLandingPage(value: Boolean) {
         val pref = preferences.edit()

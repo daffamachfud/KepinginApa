@@ -29,5 +29,8 @@ data class WishlistEntity(
     var link: String?,
 
     @ColumnInfo(name = "imagePath")
-    var imagePath:String?
+    var imagePath:String?,
+
+    @ColumnInfo(name = "bought")
+    var bought:Boolean?
 )

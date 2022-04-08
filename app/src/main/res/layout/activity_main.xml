@@ -39,6 +39,7 @@
         android:text="@string/list_kepingin_main"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginBottom="16dp"
         android:visibility="invisible" />
 
     <ImageView
@@ -46,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:contentDescription="empty"
+        android:contentDescription="@string/contentdesc"
         android:src="@drawable/bg_empty_wishlist"
         android:visibility="gone" />
 
@@ -54,17 +55,17 @@
         android:id="@+id/loadingListWishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeWishlist"
-        android:visibility="gone"
-        android:layout_below="@+id/tvListCountWishList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/tvListCountWishList"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:visibility="gone" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,5 +79,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/grey_app"
-        android:contentDescription="add" />
+        android:contentDescription="@string/contentdesc"
+        android:src="@drawable/ic_add_white" />
 </RelativeLayout>

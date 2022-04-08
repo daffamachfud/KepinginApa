@@ -37,6 +37,14 @@ class AppRepository private constructor(
         }.asLiveData()
     }
 
+    override fun getDetailWish(wishId: Int): LiveData<Resource<WishlistEntity>> {
+        return object : NetworkBoundResource<WishlistEntity>() {
+            override fun loadFromDB(): LiveData<WishlistEntity> =
+                localDataSource.getDetailWish(wishId)
+        }.asLiveData()
+    }
+
+
     override fun insertUser(user: UserEntity) {
         val runnable = { localDataSource.insertUser(user) }
         appExecutors.diskIO().execute(runnable)
@@ -45,6 +53,13 @@ class AppRepository private constructor(
     override fun insertWishlist(wish: WishlistEntity) {
         val runnable = {
             localDataSource.insertWish(wish)
+        }
+        appExecutors.diskIO().execute(runnable)
+    }
+
+    override fun deleteWish(wish: WishlistEntity) {
+        val runnable = {
+            localDataSource.deleteWish(wish)
         }
         appExecutors.diskIO().execute(runnable)
     }

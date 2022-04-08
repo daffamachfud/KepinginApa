@@ -1,16 +1,15 @@
 package com.daffa.kepinginapa.ui.home.adapter
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.data.local.entity.WishlistEntity
 import com.daffa.kepinginapa.databinding.HomeWishlistAdapterBinding
+import com.daffa.kepinginapa.ui.wishlist.DetailWishlistActivity
 import com.daffa.kepinginapa.utils.Utils
 import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
-import java.io.File
 
 class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHolder>() {
     private var listHomeWishlist = ArrayList<WishlistEntity>()
@@ -40,7 +39,10 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
         RecyclerView.ViewHolder(binding.root) {
         fun bind(wishlist: WishlistEntity) {
             with(binding) {
-                imgHomeWishlist.setImageURI(Uri.parse(wishlist.imagePath))
+                val uriPathHelper = Utils.UriPathHelper()
+                val filePath =
+                    uriPathHelper.getPath(binding.root.context, Uri.parse(wishlist.imagePath))
+                imgHomeWishlist.setImageURI(Uri.parse(filePath))
                 titleHomeWishlist.text = wishlist.title
 
                 categoryHomeWishlist.text = wishlist.category
@@ -52,6 +54,14 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
 
                 priceHomeWishlist.text = wishlist.price.formatCurrencyRupiah()
                 descHomeWishlist.text = wishlist.note
+
+                binding.layoutWishAdapter.setOnClickListener {
+                    val intent =
+                        Intent(binding.root.context, DetailWishlistActivity::class.java).apply {
+                            putExtra(DetailWishlistActivity.EXTRA_WISH, wishlist.id)
+                        }
+                    binding.root.context.startActivity(intent)
+                }
             }
         }
     }

@@ -7,22 +7,24 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.databinding.ActivityMainBinding
 import com.daffa.kepinginapa.ui.home.adapter.HomeWishlistAdapter
 import com.daffa.kepinginapa.ui.wishlist.InputWishlistActivity
+import com.daffa.kepinginapa.utils.Utils
 import com.daffa.kepinginapa.vo.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private val wishlistAdapter = HomeWishlistAdapter()
+    var username = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
@@ -33,11 +35,15 @@ class MainActivity : AppCompatActivity() {
         viewModel.getUserData().observe(this) { dataUser ->
             if (dataUser.data != null) {
                 binding.tvUserName.text = dataUser.data.userName.toString()
-                binding.imgProfilePicture.setImageURI(Uri.parse(dataUser.data.profilePicture))
+                username = dataUser.data.userName.toString()
+                val uriPathHelper = Utils.UriPathHelper()
+                val filePath = uriPathHelper.getPath(this, Uri.parse(dataUser.data.profilePicture))
+                binding.imgProfilePicture.setImageURI(Uri.parse(filePath))
+
             }
         }
 
-//        loadWishlist()
+        loadWishlist()
 
         with(binding.rvHomeWishlist) {
             layoutManager = LinearLayoutManager(context)
@@ -52,11 +58,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-//        loadWishlist()
+        loadWishlist()
     }
 
     private fun loadWishlist() {
-        println("onresponse 1")
         //data wishlist
         viewModel.getWihslistData().observe(this) {
             if (it.data != null) {
@@ -66,6 +71,11 @@ class MainActivity : AppCompatActivity() {
                     binding.tvListCountWishList.visibility = View.VISIBLE
                     wishlistAdapter.setHomeWishlist(it.data)
                     binding.rvHomeWishlist.visibility = View.VISIBLE
+                    binding.tvListCountWishList.text = resources.getString(
+                        R.string.list_kepingin_main,
+                        username,
+                        it.data.count().toString()
+                    )
                 } else {
                     binding.loadingListWishlist.visibility = View.GONE
                     binding.bgEmpty.visibility = View.VISIBLE

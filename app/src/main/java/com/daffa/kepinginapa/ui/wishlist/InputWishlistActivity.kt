@@ -13,7 +13,9 @@ import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.data.local.entity.WishlistEntity
 import com.daffa.kepinginapa.databinding.ActivityInputWishlistBinding
 import com.daffa.kepinginapa.utils.DialogLoading
+import com.daffa.kepinginapa.utils.Utils.MoneyTextWatcher
 import com.daffa.kepinginapa.vo.ViewModelFactory
+
 
 class InputWishlistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInputWishlistBinding
@@ -43,6 +45,9 @@ class InputWishlistActivity : AppCompatActivity() {
         binding.imgViewWish.setOnClickListener {
             getContent.launch("image/*")
         }
+
+        //set currency edit text
+        binding.priceWish.addTextChangedListener(MoneyTextWatcher(binding.priceWish))
 
         // access the items of the list
         val category = resources.getStringArray(R.array.category_array)
@@ -84,9 +89,10 @@ class InputWishlistActivity : AppCompatActivity() {
                     binding.titleWish.text.toString(),
                     selectedCategory,
                     binding.descWish.text.toString(),
-                    binding.priceWish.text.toString().toDouble(),
+                    MoneyTextWatcher.parseCurrencyValue(binding.priceWish.text.toString()).toDouble(),
                     binding.linkWish.text.toString(),
-                    imgWishlist
+                    imgWishlist,
+                    false
                 )
             )
             progress.dismiss()
