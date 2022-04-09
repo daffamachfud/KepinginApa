@@ -66,9 +66,8 @@
                     android:layout_height="wrap_content"
                     android:autofillHints=""
                     android:hint="@string/title"
-                    android:inputType="text"
+                    android:inputType="textLongMessage"
                     android:maxLength="32"
-                    android:maxLines="1"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
@@ -80,7 +79,6 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:textColorHint="@color/black">
 
                 <Spinner
@@ -103,9 +101,8 @@
                     android:layout_height="wrap_content"
                     android:autofillHints=""
                     android:hint="@string/deskripsi"
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
                     android:maxLength="250"
-                    android:maxLines="1"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
@@ -117,7 +114,6 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:textColorHint="@color/black">
 
                 <EditText
@@ -149,7 +145,6 @@
                     android:autofillHints=""
                     android:hint="@string/harga_biaya"
                     android:inputType="numberDecimal"
-                    android:maxLines="1"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
