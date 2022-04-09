@@ -22,6 +22,12 @@ class DetailWishViewModel(private val appRepository: AppRepository) : ViewModel(
         )
     }
 
+    fun updateBoughtWish(wish: WishlistEntity){
+        appRepository.updateBoughtWish(
+            wish
+        )
+    }
+
     var detailWish: LiveData<Resource<WishlistEntity>> = Transformations.switchMap(wishId){
         appRepository.getDetailWish(it)
     }

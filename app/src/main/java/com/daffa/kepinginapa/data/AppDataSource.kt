@@ -13,4 +13,5 @@ interface AppDataSource {
     fun insertUser(user: UserEntity)
     fun insertWishlist(wish: WishlistEntity)
     fun deleteWish(wish: WishlistEntity)
+    fun updateBoughtWish(wish: WishlistEntity)
 }

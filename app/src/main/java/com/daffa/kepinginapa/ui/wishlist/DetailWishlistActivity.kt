@@ -16,7 +16,7 @@ import com.daffa.kepinginapa.vo.Resource
 import com.daffa.kepinginapa.vo.Status
 import com.daffa.kepinginapa.vo.ViewModelFactory
 
-class DetailWishlistActivity : AppCompatActivity() {
+class DetailWishlistActivity : AppCompatActivity(),WishSuccessCallback {
 
     companion object {
         const val EXTRA_WISH = "extra_wish"
@@ -59,6 +59,13 @@ class DetailWishlistActivity : AppCompatActivity() {
             }
             alert.show()
         }
+
+        binding.btnBuy.setOnClickListener {
+            viewModel.updateBoughtWish(dataWish)
+            WishlistSuccessDialogFragment(this).show(
+                supportFragmentManager,""
+            )
+        }
     }
 
     private fun setupDetail(
@@ -91,5 +98,9 @@ class DetailWishlistActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun successBought() {
+        finish()
     }
 }

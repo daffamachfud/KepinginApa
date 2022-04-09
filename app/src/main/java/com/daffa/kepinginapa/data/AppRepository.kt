@@ -64,4 +64,11 @@ class AppRepository private constructor(
         appExecutors.diskIO().execute(runnable)
     }
 
+    override fun updateBoughtWish(wish: WishlistEntity) {
+        val runnable = {
+            localDataSource.updateBoughtWish(wish.id)
+        }
+        appExecutors.diskIO().execute(runnable)
+    }
+
 }

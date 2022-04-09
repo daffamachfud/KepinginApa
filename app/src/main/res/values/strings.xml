@@ -2,7 +2,7 @@
     <string name="app_name">KepinginApa</string>
     <string name="desc_img_home_wishlist">ImageViewWihslistHome</string>
     <string name="desc_category_img_home_wishlist">CategoryImageViewWihslistHome</string>
-    <string name="title">Title</string>
+    <string name="title">Judul</string>
     <string name="category">Category</string>
     <string name="description">Deskripsi</string>
     <string name="price">price</string>
@@ -22,4 +22,5 @@
     <string name="harga_biaya">Harga/Biaya</string>
     <string name="submit">Submit</string>
     <string name="terbeli">Terbeli</string>
+    <string name="close">Tutup</string>
 </resources>

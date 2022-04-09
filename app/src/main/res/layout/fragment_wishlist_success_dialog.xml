@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    tools:context=".ui.wishlist.WishlistSuccessDialogFragment">
+
+    <ImageView
+        android:id="@+id/bgSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        android:src="@drawable/bg_success_wish"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/description" />
+
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/viewConfetti"
+        android:layout_width="360dp"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bgSuccess"
+        android:text="@string/close" />
+
+
+</RelativeLayout>
