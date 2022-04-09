@@ -9,5 +9,5 @@ import com.daffa.kepinginapa.vo.Resource
 
 class MainViewModel(private val appRepository: AppRepository) : ViewModel() {
     fun getUserData(): LiveData<Resource<UserEntity>> = appRepository.getUserData()
-    fun getWihslistData(): LiveData<Resource<List<WishlistEntity>>> = appRepository.getWishlist()
+    fun getWishListData(): LiveData<Resource<List<WishlistEntity>>> = appRepository.getWishlist()
 }

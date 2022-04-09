@@ -1,5 +1,5 @@
 package com.daffa.kepinginapa.ui.wishlist
 
-public interface WishSuccessCallback {
+interface WishSuccessCallback {
     fun successBought()
 }

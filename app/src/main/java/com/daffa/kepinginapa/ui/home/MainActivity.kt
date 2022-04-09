@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private val wishlistAdapter = HomeWishlistAdapter()
-    var username = ""
+    private var username = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
 
         binding.loadingListWishlist.visibility = View.VISIBLE
-        //load data halaman
+        //load data page
         //data user
         viewModel.getUserData().observe(this) { dataUser ->
             if (dataUser.data != null) {
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadWishlist() {
         //data wishlist
-        viewModel.getWihslistData().observe(this) {
+        viewModel.getWishListData().observe(this) {
             if (it.data != null) {
                 if (it.data.isNotEmpty()) {
                     binding.loadingListWishlist.visibility = View.GONE
