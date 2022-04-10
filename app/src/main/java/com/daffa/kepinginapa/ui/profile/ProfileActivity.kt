@@ -3,10 +3,10 @@ package com.daffa.kepinginapa.ui.profile
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.databinding.ActivityProfileBinding
 import com.daffa.kepinginapa.utils.Utils
@@ -52,8 +52,19 @@ class ProfileActivity : AppCompatActivity() {
         loadProfileWishList()
 
         with(binding.rvWishProfile) {
-            layoutManager = GridLayoutManager(context,3)
+            layoutManager = GridLayoutManager(context, 3)
             adapter = wishlistAdapter
+        }
+
+        binding.btnHelp.setOnClickListener {
+            FaqDialogFragment().show(
+                supportFragmentManager, ""
+            )
+        }
+
+        binding.imgProfile.setOnLongClickListener {
+            Toast.makeText(this, "Fitur ini belum tersedia", Toast.LENGTH_SHORT).show()
+            return@setOnLongClickListener true
         }
     }
 
@@ -70,7 +81,7 @@ class ProfileActivity : AppCompatActivity() {
                         R.string.kamu_punya,
                         it.data.count().toString()
                     )
-                }else{
+                } else {
                     binding.bgEmpty.visibility = View.VISIBLE
                     binding.loadingListWishlist.visibility = View.GONE
                     binding.rvWishProfile.visibility = View.GONE
