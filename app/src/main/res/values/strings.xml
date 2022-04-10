@@ -23,4 +23,8 @@
     <string name="submit">Submit</string>
     <string name="terbeli">Terbeli</string>
     <string name="close">Tutup</string>
+    <string name="hello">Hello,</string>
+    <string name="kamu_punya">Kamu punya (%s) keinginan</string>
+    <string name="bantuan">Bantuan</string>
+
 </resources>

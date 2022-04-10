@@ -78,7 +78,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/grey_app"
+        android:backgroundTint="@color/black"
         android:contentDescription="@string/contentdesc"
         android:src="@drawable/ic_add_white" />
 </RelativeLayout>

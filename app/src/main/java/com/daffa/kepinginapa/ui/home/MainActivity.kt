@@ -1,8 +1,10 @@
 package com.daffa.kepinginapa.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.databinding.ActivityMainBinding
 import com.daffa.kepinginapa.ui.home.adapter.HomeWishlistAdapter
+import com.daffa.kepinginapa.ui.profile.ProfileActivity
 import com.daffa.kepinginapa.ui.wishlist.InputWishlistActivity
 import com.daffa.kepinginapa.utils.Utils
 import com.daffa.kepinginapa.vo.ViewModelFactory
@@ -54,6 +57,11 @@ class MainActivity : AppCompatActivity() {
             val intentWish = Intent(this, InputWishlistActivity::class.java)
             startActivity(intentWish)
         }
+
+        binding.imgProfilePicture.setOnClickListener {
+            val intentProfile = Intent(this, ProfileActivity::class.java)
+            startActivity(intentProfile)
+        }
     }
 
     override fun onResume() {
@@ -65,6 +73,9 @@ class MainActivity : AppCompatActivity() {
         //data wishlist
         viewModel.getWishListData().observe(this) {
             if (it.data != null) {
+                for(item in it.data){
+                    Log.d("onResumeDataAfterDelete","Nama Barang : ${item.title}")
+                }
                 if (it.data.isNotEmpty()) {
                     binding.loadingListWishlist.visibility = View.GONE
                     binding.bgEmpty.visibility = View.GONE
@@ -82,7 +93,6 @@ class MainActivity : AppCompatActivity() {
                     binding.tvListCountWishList.visibility = View.GONE
                     binding.rvHomeWishlist.visibility = View.GONE
                 }
-
             }
         }
     }

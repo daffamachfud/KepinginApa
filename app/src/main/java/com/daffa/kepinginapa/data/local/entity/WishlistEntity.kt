@@ -32,5 +32,8 @@ data class WishlistEntity(
     var imagePath:String?,
 
     @ColumnInfo(name = "bought")
-    var bought:Boolean?
+    var bought:Boolean?,
+
+    @ColumnInfo(name = "deleted")
+    var deleted:Boolean?
 )

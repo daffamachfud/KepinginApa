@@ -17,7 +17,7 @@ interface AppDao {
     @Query("SELECT * FROM user")
     fun getUserData(): LiveData<UserEntity>
 
-    @Query("SELECT * FROM wishlist WHERE bought = 0")
+    @Query("SELECT * FROM wishlist WHERE bought = 0 AND deleted = 0")
     fun getWishlist(): LiveData<List<WishlistEntity>>
 
     @Query("SELECT * FROM wishlist WHERE id = :wishId")
@@ -25,6 +25,9 @@ interface AppDao {
 
     @Query("UPDATE `wishlist` SET bought=1 WHERE id = :id")
     fun updateStatusWish(id: Int?)
+
+    @Query("UPDATE `wishlist` SET deleted=1 WHERE id = :id")
+    fun deletedWish(id: Int?)
 
     @Delete
     fun deleteWish(wish: WishlistEntity)

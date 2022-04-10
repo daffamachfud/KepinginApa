@@ -1,7 +1,9 @@
 package com.daffa.kepinginapa.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,13 +12,17 @@ import com.daffa.kepinginapa.databinding.HomeWishlistAdapterBinding
 import com.daffa.kepinginapa.ui.wishlist.DetailWishlistActivity
 import com.daffa.kepinginapa.utils.Utils
 import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
+import com.google.gson.Gson
 
 class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHolder>() {
     private var listHomeWishlist = ArrayList<WishlistEntity>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setHomeWishlist(wishlists: List<WishlistEntity>) {
         this.listHomeWishlist.clear()
         this.listHomeWishlist.addAll(wishlists)
+
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
@@ -29,6 +35,8 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
     }
 
     override fun onBindViewHolder(holder: WishViewHolder, position: Int) {
+        println("onresponse masok")
+        Log.d("onresponse ", Gson().toJson(listHomeWishlist))
         val wishlist = listHomeWishlist[position]
         holder.bind(wishlist)
     }
@@ -38,6 +46,7 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
     class WishViewHolder(private val binding: HomeWishlistAdapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(wishlist: WishlistEntity) {
+            println("onresponse masok 1")
             with(binding) {
                 val uriPathHelper = Utils.UriPathHelper()
                 val filePath =

@@ -92,7 +92,8 @@ class InputWishlistActivity : AppCompatActivity() {
                     MoneyTextWatcher.parseCurrencyValue(binding.priceWish.text.toString()).toDouble(),
                     binding.linkWish.text.toString(),
                     imgWishlist,
-                    false
+                    bought = false,
+                    deleted = false
                 )
             )
             progress.dismiss()
