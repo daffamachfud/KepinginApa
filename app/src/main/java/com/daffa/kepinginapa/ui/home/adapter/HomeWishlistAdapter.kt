@@ -3,7 +3,6 @@ package com.daffa.kepinginapa.ui.home.adapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +10,6 @@ import com.daffa.kepinginapa.data.local.entity.WishlistEntity
 import com.daffa.kepinginapa.databinding.HomeWishlistAdapterBinding
 import com.daffa.kepinginapa.ui.wishlist.DetailWishlistActivity
 import com.daffa.kepinginapa.utils.Utils
-import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
-import com.google.gson.Gson
 
 class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHolder>() {
     private var listHomeWishlist = ArrayList<WishlistEntity>()
@@ -35,8 +32,6 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
     }
 
     override fun onBindViewHolder(holder: WishViewHolder, position: Int) {
-        println("onresponse masok")
-        Log.d("onresponse ", Gson().toJson(listHomeWishlist))
         val wishlist = listHomeWishlist[position]
         holder.bind(wishlist)
     }
@@ -46,23 +41,13 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
     class WishViewHolder(private val binding: HomeWishlistAdapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(wishlist: WishlistEntity) {
-            println("onresponse masok 1")
             with(binding) {
                 val uriPathHelper = Utils.UriPathHelper()
                 val filePath =
                     uriPathHelper.getPath(binding.root.context, Uri.parse(wishlist.imagePath))
                 imgHomeWishlist.setImageURI(Uri.parse(filePath))
-                titleHomeWishlist.text = wishlist.title
 
-                categoryHomeWishlist.text = wishlist.category
-//                categoryHomeWishlist.setCompoundDrawablesWithIntrinsicBounds(
-//                    Utils.getCategoryIcon(
-//                        wishlist.title
-//                    ), 0, 0, 0
-//                )
-
-                priceHomeWishlist.text = wishlist.price.formatCurrencyRupiah()
-                descHomeWishlist.text = wishlist.note
+                binding.titleHomeWishlist.text = wishlist.title
 
                 binding.layoutWishAdapter.setOnClickListener {
                     val intent =

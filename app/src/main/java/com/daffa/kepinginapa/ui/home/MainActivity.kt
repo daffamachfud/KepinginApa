@@ -1,6 +1,5 @@
 package com.daffa.kepinginapa.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.databinding.ActivityMainBinding
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         loadWishlist()
 
         with(binding.rvHomeWishlist) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 2)
             adapter = wishlistAdapter
         }
 
@@ -83,8 +83,7 @@ class MainActivity : AppCompatActivity() {
                     wishlistAdapter.setHomeWishlist(it.data)
                     binding.rvHomeWishlist.visibility = View.VISIBLE
                     binding.tvListCountWishList.text = resources.getString(
-                        R.string.list_kepingin_main,
-                        username,
+                        R.string.kamu_punya_keinginan,
                         it.data.count().toString()
                     )
                 } else {
