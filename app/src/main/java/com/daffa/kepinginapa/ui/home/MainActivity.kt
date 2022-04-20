@@ -58,10 +58,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentWish)
         }
 
-        binding.imgProfilePicture.setOnClickListener {
-            val intentProfile = Intent(this, ProfileActivity::class.java)
-            startActivity(intentProfile)
-        }
+//        binding.imgProfilePicture.setOnClickListener {
+//            val intentProfile = Intent(this, ProfileActivity::class.java)
+//            startActivity(intentProfile)
+//        }
     }
 
     override fun onResume() {
