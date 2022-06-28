@@ -5,7 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import com.daffa.kepinginapa.utils.AppExecutors
 import com.daffa.kepinginapa.vo.Resource
 
-abstract class NetworkBoundResource<ResultType>() {
+abstract class NetworkBoundResource<ResultType> {
     private val result = MediatorLiveData<Resource<ResultType>>()
     init {
         result.value = Resource.loading(null)
