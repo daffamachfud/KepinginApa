@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.daffa.kepinginapa.data.AppRepository
 import com.daffa.kepinginapa.data.local.entity.WishlistEntity
 import com.daffa.kepinginapa.vo.Resource
 

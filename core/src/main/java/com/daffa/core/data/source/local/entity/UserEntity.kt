@@ -10,11 +10,11 @@ data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    var id:Int?,
+    var id:Int,
 
     @ColumnInfo(name = "username")
-    var userName:String?,
+    var userName:String,
 
     @ColumnInfo(name = "profilePicture")
-    var profilePicture:String?
+    var profilePicture:String
 )

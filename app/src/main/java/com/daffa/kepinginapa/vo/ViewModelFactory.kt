@@ -3,7 +3,6 @@ package com.daffa.kepinginapa.vo
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.daffa.kepinginapa.data.AppRepository
 import com.daffa.kepinginapa.di.Injection
 import com.daffa.kepinginapa.ui.home.MainViewModel
 import com.daffa.kepinginapa.ui.landingpage.InputDataUserViewModel

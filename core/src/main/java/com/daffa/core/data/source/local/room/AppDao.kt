@@ -4,20 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.daffa.core.data.source.local.entity.UserEntity
 import com.daffa.core.data.source.local.entity.WishlistEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: UserEntity)
+    suspend fun insertUser(user: UserEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWish(wish: WishlistEntity)
 
     @Query("SELECT * FROM user")
-    fun getUserData(): LiveData<UserEntity>
+    fun getUserData(): Flow<UserEntity>
 
     @Query("SELECT * FROM wishlist WHERE bought = 0 AND deleted = 0")
-    fun getWishlist(): LiveData<List<WishlistEntity>>
+    fun getWishlist(): Flow<List<WishlistEntity>>
 
     @Query("SELECT * FROM wishlist WHERE id = :wishId")
     fun getDetailWish(wishId: Int): LiveData<WishlistEntity>
