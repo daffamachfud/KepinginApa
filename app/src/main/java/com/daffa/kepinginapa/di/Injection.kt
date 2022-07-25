@@ -3,7 +3,6 @@ package com.daffa.kepinginapa.di
 import android.content.Context
 import com.daffa.kepinginapa.data.AppRepository
 import com.daffa.kepinginapa.data.local.LocalDataSource
-import com.daffa.kepinginapa.data.local.room.AppDatabase
 import com.daffa.kepinginapa.utils.AppExecutors
 
 object Injection {

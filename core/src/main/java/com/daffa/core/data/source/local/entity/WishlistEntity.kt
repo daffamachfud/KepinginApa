@@ -1,4 +1,4 @@
-package com.daffa.kepinginapa.data.local.entity
+package com.daffa.core.data.source.local.entity
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
@@ -11,29 +11,29 @@ data class WishlistEntity(
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    var id: Int?,
+    var id: Int,
 
     @ColumnInfo(name = "title")
-    var title: String?,
+    var title: String,
 
     @ColumnInfo(name = "category")
-    var category: String?,
+    var category: String,
 
     @ColumnInfo(name = "note")
-    var note: String?,
+    var note: String,
 
     @ColumnInfo(name = "price")
-    var price: Double?,
+    var price: Double,
 
     @ColumnInfo(name = "link")
-    var link: String?,
+    var link: String,
 
     @ColumnInfo(name = "imagePath")
-    var imagePath:String?,
+    var imagePath:String,
 
     @ColumnInfo(name = "bought")
-    var bought:Boolean?,
+    var bought:Boolean,
 
     @ColumnInfo(name = "deleted")
-    var deleted:Boolean?
+    var deleted:Boolean
 )

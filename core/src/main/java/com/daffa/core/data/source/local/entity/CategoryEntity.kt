@@ -1,4 +1,4 @@
-package com.daffa.kepinginapa.data.local.entity
+package com.daffa.core.data.source.local.entity
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

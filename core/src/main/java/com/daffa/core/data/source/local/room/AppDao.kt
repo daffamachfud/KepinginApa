@@ -1,10 +1,9 @@
-package com.daffa.kepinginapa.data.local.room
+package com.daffa.core.data.source.local.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.daffa.kepinginapa.data.local.entity.UserEntity
-import com.daffa.kepinginapa.data.local.entity.WishlistEntity
-
+import com.daffa.core.data.source.local.entity.UserEntity
+import com.daffa.core.data.source.local.entity.WishlistEntity
 
 @Dao
 interface AppDao {
@@ -21,7 +20,7 @@ interface AppDao {
     fun getWishlist(): LiveData<List<WishlistEntity>>
 
     @Query("SELECT * FROM wishlist WHERE id = :wishId")
-    fun getDetailWish(wishId:Int):LiveData<WishlistEntity>
+    fun getDetailWish(wishId: Int): LiveData<WishlistEntity>
 
     @Query("UPDATE `wishlist` SET bought=1 WHERE id = :id")
     fun updateStatusWish(id: Int?)
@@ -31,5 +30,4 @@ interface AppDao {
 
     @Delete
     fun deleteWish(wish: WishlistEntity)
-
 }
