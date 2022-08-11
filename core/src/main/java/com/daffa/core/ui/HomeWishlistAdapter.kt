@@ -1,24 +1,24 @@
-package com.daffa.kepinginapa.ui.home.adapter
+package com.daffa.core.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.daffa.kepinginapa.data.local.entity.WishlistEntity
-import com.daffa.kepinginapa.databinding.HomeWishlistAdapterBinding
-import com.daffa.kepinginapa.ui.wishlist.DetailWishlistActivity
-import com.daffa.kepinginapa.utils.Utils
-import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
+import com.daffa.core.databinding.HomeWishlistAdapterBinding
+import com.daffa.core.domain.model.Wishlist
+import com.daffa.core.utils.Utils
+import com.daffa.core.utils.Utils.formatCurrencyRupiah
 import com.google.gson.Gson
 
 class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHolder>() {
-    private var listHomeWishlist = ArrayList<WishlistEntity>()
+    private var listHomeWishlist = ArrayList<Wishlist>()
+    var onItemClick: ((Wishlist) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setHomeWishlist(wishlists: List<WishlistEntity>) {
+    fun setHomeWishlist(wishlists: List<Wishlist>?) {
+        if (wishlists == null) return
         this.listHomeWishlist.clear()
         this.listHomeWishlist.addAll(wishlists)
 
@@ -43,9 +43,9 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
 
     override fun getItemCount(): Int = listHomeWishlist.size
 
-    class WishViewHolder(private val binding: HomeWishlistAdapterBinding) :
+    inner class WishViewHolder(private val binding: HomeWishlistAdapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(wishlist: WishlistEntity) {
+        fun bind(wishlist: Wishlist) {
             println("onresponse masok 1")
             with(binding) {
                 val uriPathHelper = Utils.UriPathHelper()
@@ -64,13 +64,12 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
                 priceHomeWishlist.text = wishlist.price.formatCurrencyRupiah()
                 descHomeWishlist.text = wishlist.note
 
-                binding.layoutWishAdapter.setOnClickListener {
-                    val intent =
-                        Intent(binding.root.context, DetailWishlistActivity::class.java).apply {
-                            putExtra(DetailWishlistActivity.EXTRA_WISH, wishlist.id)
-                        }
-                    binding.root.context.startActivity(intent)
-                }
+            }
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(listHomeWishlist[adapterPosition])
             }
         }
     }

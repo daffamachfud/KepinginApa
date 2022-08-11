@@ -1,13 +1,15 @@
 package com.daffa.kepinginapa.ui.wishlist
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.daffa.kepinginapa.data.local.entity.WishlistEntity
-import com.daffa.kepinginapa.vo.Resource
+import androidx.lifecycle.*
+import com.daffa.core.data.Resource
+import com.daffa.core.domain.model.Wishlist
+import com.daffa.core.domain.usecase.AppUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailWishViewModel(private val appRepository: AppRepository) : ViewModel() {
+@HiltViewModel
+class DetailWishViewModel @Inject constructor(private val useCase: AppUseCase) : ViewModel() {
 
     private val wishId =MutableLiveData<Int>()
 
@@ -15,19 +17,15 @@ class DetailWishViewModel(private val appRepository: AppRepository) : ViewModel(
         this.wishId.value = wishId
     }
 
-    fun deleteWish(wish: WishlistEntity) {
-        appRepository.deleteWish(
-            wish
-        )
+    fun deleteWish(wish: Wishlist) {
+        viewModelScope.launch {
+            useCase.deleteWish(wish)
+        }
     }
 
-    fun updateBoughtWish(wish: WishlistEntity){
-        appRepository.updateBoughtWish(
-            wish
-        )
-    }
-
-    var detailWish: LiveData<Resource<WishlistEntity>> = Transformations.switchMap(wishId){
-        appRepository.getDetailWish(it)
+    fun updateBoughtWish(wish: Wishlist){
+        viewModelScope.launch {
+            useCase.updateBoughtWish(wish.id)
+        }
     }
 }

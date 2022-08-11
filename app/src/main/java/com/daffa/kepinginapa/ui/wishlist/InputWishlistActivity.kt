@@ -7,16 +7,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.daffa.core.domain.model.Wishlist
 import com.daffa.kepinginapa.R
-import com.daffa.kepinginapa.data.local.entity.WishlistEntity
 import com.daffa.kepinginapa.databinding.ActivityInputWishlistBinding
 import com.daffa.kepinginapa.utils.DialogLoading
 import com.daffa.kepinginapa.utils.Utils.MoneyTextWatcher
-import com.daffa.kepinginapa.vo.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class InputWishlistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInputWishlistBinding
     private val getContent =
@@ -31,16 +31,13 @@ class InputWishlistActivity : AppCompatActivity() {
 
     private lateinit var imgWishlist: String
     private lateinit var selectedCategory: String
-    private lateinit var viewModel: WishListViewModel
+    private val viewModel: WishListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInputWishlistBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[WishListViewModel::class.java]
 
         binding.imgViewWish.setOnClickListener {
             getContent.launch("image/*")
@@ -57,7 +54,7 @@ class InputWishlistActivity : AppCompatActivity() {
         if (spinner != null) {
             val adapter = ArrayAdapter(
                 this,
-                R.layout.category_list, category
+                com.daffa.core.R.layout.category_list, category
             )
             spinner.adapter = adapter
 
@@ -84,12 +81,13 @@ class InputWishlistActivity : AppCompatActivity() {
             val progress = DialogLoading(this)
             progress.show()
             viewModel.inputWish(
-                WishlistEntity(
-                    null,
+                Wishlist(
+                    0,
                     binding.titleWish.text.toString(),
                     selectedCategory,
                     binding.descWish.text.toString(),
-                    MoneyTextWatcher.parseCurrencyValue(binding.priceWish.text.toString()).toDouble(),
+                    MoneyTextWatcher.parseCurrencyValue(binding.priceWish.text.toString())
+                        .toDouble(),
                     binding.linkWish.text.toString(),
                     imgWishlist,
                     bought = false,

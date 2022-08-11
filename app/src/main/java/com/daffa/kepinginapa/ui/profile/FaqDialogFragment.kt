@@ -10,13 +10,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.databinding.FragmentFaqDialogBinding
-import com.daffa.kepinginapa.databinding.FragmentWishlistSuccessDialogBinding
-import com.daffa.kepinginapa.utils.Utils
-import java.util.*
-import kotlin.concurrent.schedule
 
 
-class FaqDialogFragment: DialogFragment() {
+class FaqDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentFaqDialogBinding
 
     override fun onCreateView(

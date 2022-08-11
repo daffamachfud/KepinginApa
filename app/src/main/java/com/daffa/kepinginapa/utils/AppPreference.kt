@@ -1,7 +1,7 @@
 package com.daffa.kepinginapa.utils
 
 import android.content.Context
-import androidx.preference.PreferenceManager
+import android.preference.PreferenceManager
 
 internal class AppPreference(context: Context) {
     companion object {

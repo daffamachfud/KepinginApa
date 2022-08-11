@@ -11,19 +11,17 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class AppRepository @Inject constructor(
-    private val localDataSource: LocalDataSource,
-    private val appExecutors: AppExecutors
+    private val localDataSource: LocalDataSource
 ) : IAppRepository {
 
     companion object {
         @Volatile
         private var instance: AppRepository? = null
         fun getInstance(
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
+            localData: LocalDataSource
         ): AppRepository =
             instance ?: synchronized(this) {
-                instance ?: AppRepository(localData, appExecutors)
+                instance ?: AppRepository(localData)
             }
     }
 
@@ -45,10 +43,6 @@ class AppRepository @Inject constructor(
             }
         }.asFlow()
 
-    override fun getDetailWish(wishid: Int): Flow<Resource<Wishlist>> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun insertUser(user: User) {
         localDataSource.insertUser(
             DataMapper.mapUserDomainToEntity(user)
@@ -56,17 +50,18 @@ class AppRepository @Inject constructor(
     }
 
     override suspend fun insertWishlist(wishlist: Wishlist) {
-       localDataSource.insertWish(
+        localDataSource.insertWish(
             DataMapper.mapWishlistDomainToEntities(wishlist)
-       )
+        )
     }
 
-    override fun deleteWish(wishlist: Wishlist) {
-        TODO("Not yet implemented")
+    override suspend fun deleteWish(wishlist: Wishlist) {
+        val wishEntity = DataMapper.mapWishlistDomainToEntities(wishlist)
+        localDataSource.deleteWish(wishEntity)
     }
 
-    override fun updateBoughtWish(wishlist: Wishlist) {
-        TODO("Not yet implemented")
+    override suspend fun updateBoughtWish(wishId: Int) {
+        localDataSource.updateBoughtWish(wishId)
     }
 
 

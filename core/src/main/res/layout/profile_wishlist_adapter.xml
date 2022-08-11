@@ -9,7 +9,6 @@
     android:layout_marginBottom="12dp"
     android:padding="24dp">
 
-
     <ImageView
         android:id="@+id/imgHomeWishlist"
         android:layout_width="110dp"

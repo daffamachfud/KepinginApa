@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.READ_DATABASE"
         android:protectionLevel="normal"/>
     <application
+        android:name=".MyApplication"
+
         android:requestLegacyExternalStorage="true"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher_foreground"
@@ -19,16 +21,16 @@
         tools:ignore="DataExtractionRules">
         <activity
             android:name=".ui.wishlist.InputWishlistActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.wishlist.DetailWishlistActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.landingpage.InputDataUserActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.landingpage.LandingPageActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.splashscreen.SplashScreenActivity"
             android:exported="true">
@@ -40,7 +42,7 @@
         </activity>
         <activity
             android:name=".ui.profile.ProfileActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.home.MainActivity"
             android:exported="true">

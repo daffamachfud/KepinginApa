@@ -1,16 +1,25 @@
 package com.daffa.kepinginapa.ui.landingpage
 
 import androidx.lifecycle.ViewModel
-import com.daffa.kepinginapa.data.local.entity.UserEntity
-
-class InputDataUserViewModel(private val appRepository: AppRepository) : ViewModel() {
+import androidx.lifecycle.viewModelScope
+import com.daffa.core.domain.model.User
+import com.daffa.core.domain.usecase.AppUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+@HiltViewModel
+class InputDataUserViewModel @Inject constructor(val useCase: AppUseCase) : ViewModel() {
 
     fun inputDataUser(uriImage: String, userName: String) {
-        appRepository.insertUser(
-            UserEntity(
-                0, userName, uriImage
+        viewModelScope.launch {
+            useCase.insertUser(
+                User(
+                    id = 0,
+                    userName = userName,
+                    profilePicture = uriImage
+                )
             )
-        )
+        }
     }
 
 }

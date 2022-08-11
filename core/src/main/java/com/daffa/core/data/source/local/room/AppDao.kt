@@ -12,7 +12,7 @@ interface AppDao {
     suspend fun insertUser(user: UserEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertWish(wish: WishlistEntity)
+    suspend fun insertWish(wish: WishlistEntity)
 
     @Query("SELECT * FROM user")
     fun getUserData(): Flow<UserEntity>
@@ -24,10 +24,10 @@ interface AppDao {
     fun getDetailWish(wishId: Int): LiveData<WishlistEntity>
 
     @Query("UPDATE `wishlist` SET bought=1 WHERE id = :id")
-    fun updateStatusWish(id: Int?)
+    suspend fun updateStatusWish(id: Int?)
 
     @Query("UPDATE `wishlist` SET deleted=1 WHERE id = :id")
-    fun deletedWish(id: Int?)
+    suspend fun deletedWish(id: Int?)
 
     @Delete
     fun deleteWish(wish: WishlistEntity)

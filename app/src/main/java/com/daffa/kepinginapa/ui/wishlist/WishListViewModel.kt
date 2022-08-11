@@ -1,12 +1,19 @@
 package com.daffa.kepinginapa.ui.wishlist
 
 import androidx.lifecycle.ViewModel
-import com.daffa.kepinginapa.data.local.entity.WishlistEntity
+import androidx.lifecycle.viewModelScope
+import com.daffa.core.domain.model.Wishlist
+import com.daffa.core.domain.usecase.AppUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WishListViewModel(private val appRepository: AppRepository) : ViewModel() {
-    fun inputWish(wish: WishlistEntity) {
-        appRepository.insertWishlist(
-            wish
-        )
+@HiltViewModel
+class WishListViewModel @Inject constructor(private val useCase: AppUseCase) : ViewModel() {
+
+    fun inputWish(wish: Wishlist) {
+        viewModelScope.launch {
+            useCase.insertWish(wish)
+        }
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_array">
+        <item>Fashion</item>
+        <item>Elektronik</item>
+        <item>Buku</item>
+        <item>Dapur</item>
+        <item>Gaming</item>
+        <item>Kamera</item>
+        <item>Mainan/Hobi</item>
+        <item>Makanan/Minuman</item>
+        <item>Olahraga</item>
+        <item>Otomotif</item>
+        <item>Tour/Travel</item>
+        <item>Rumah Tangga</item>
+        <item>Film</item>
+        <item>Musik</item>
+        <item>Lain-lain</item>
+    </string-array>
+
+
+</resources>

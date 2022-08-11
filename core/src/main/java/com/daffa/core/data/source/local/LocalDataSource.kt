@@ -12,11 +12,11 @@ import javax.inject.Singleton
 class LocalDataSource @Inject constructor(private val appDao: AppDao) {
     suspend fun insertUser(user: UserEntity) = appDao.insertUser(user)
 
-    fun insertWish(wish: WishlistEntity) = appDao.insertWish(wish)
+    suspend fun insertWish(wish: WishlistEntity) = appDao.insertWish(wish)
 
-    fun deleteWish(wish: WishlistEntity) = appDao.deletedWish(wish.id)
+    suspend fun deleteWish(wish: WishlistEntity) = appDao.deletedWish(wish.id)
 
-    fun updateBoughtWish(wishId: Int?) = appDao.updateStatusWish(wishId)
+    suspend fun updateBoughtWish(wishId: Int?) = appDao.updateStatusWish(wishId)
 
     fun getUserData(): Flow<UserEntity> = appDao.getUserData()
 

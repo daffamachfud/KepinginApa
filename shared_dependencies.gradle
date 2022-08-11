@@ -21,6 +21,7 @@ dependencies {
     implementation "pl.droidsonroids.gif:android-gif-drawable:$gif_android"
     implementation "com.airbnb.android:lottie:$lottie_version"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+    implementation 'com.mikhaellopez:circularimageview:4.3.0'
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"

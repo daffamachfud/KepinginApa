@@ -9,16 +9,19 @@ import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.daffa.kepinginapa.databinding.ActivityInputDataUserBinding
 import com.daffa.kepinginapa.ui.home.MainActivity
 import com.daffa.kepinginapa.utils.DialogLoading
-import com.daffa.kepinginapa.vo.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InputDataUserActivity : AppCompatActivity() {
+
+    private val viewModel: InputDataUserViewModel by viewModels()
 
     companion object {
         const val REQUEST_PERMISSION_STORAGE = 100
@@ -30,7 +33,6 @@ class InputDataUserActivity : AppCompatActivity() {
             setProfilePicture(uri)
         }
     private var profileImgPath: String = ""
-    private lateinit var viewModel: InputDataUserViewModel
 
     private fun setProfilePicture(uri: Uri?) {
         profileImgPath = uri.toString()
@@ -42,9 +44,6 @@ class InputDataUserActivity : AppCompatActivity() {
         binding = ActivityInputDataUserBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[InputDataUserViewModel::class.java]
 
         binding.tvBack.setOnClickListener {
             finish()

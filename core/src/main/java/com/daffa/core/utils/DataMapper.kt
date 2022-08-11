@@ -9,15 +9,15 @@ import com.daffa.core.domain.model.Wishlist
 object DataMapper {
 
     fun mapUserEntityToDomain(input: UserEntity) = User(
-        input.id,
-        input.userName,
-        input.profilePicture
+        id = input.id,
+        userName = input.userName,
+        profilePicture = input.profilePicture
     )
 
     fun mapUserDomainToEntity(input:User) = UserEntity(
-        input.id,
-        input.userName,
-        input.profilePicture
+        id = input.id,
+        userName = input.userName,
+        profilePicture = input.profilePicture
     )
 
     fun mapWishlistEntityToDomain(input: List<WishlistEntity>): List<Wishlist> =

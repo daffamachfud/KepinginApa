@@ -1,4 +1,4 @@
-package com.daffa.kepinginapa.utils
+package com.daffa.core.utils
 
 import android.content.ContentUris
 import android.content.Context

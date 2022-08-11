@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.daffa.kepinginapa.databinding.ActivityLandingPageBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LandingPageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLandingPageBinding

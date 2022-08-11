@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">KepinginApa</string>
+    <string name="desc_img_home_wishlist">ImageViewWihslistHome</string>
+    <string name="desc_category_img_home_wishlist">CategoryImageViewWihslistHome</string>
+    <string name="title">Judul</string>
+    <string name="category">Category</string>
+    <string name="description">Deskripsi</string>
+    <string name="price">price</string>
+    <string name="username">Username</string>
+    <string name="version">version</string>
+    <string name="mulai">Mulai</string>
+    <string name="desc_landing_page">Aplikasi sederhana untuk mencatat keinginan apapun\n yang kamu targetkan,dengan aplikasi ini kamu bisa \n mencatat, menyimpan, mentargetkan keinginan kamu \n itu dengan mudah</string>
+    <string name="profil">Profil</string>
+    <string name="tuliskan_username_kamu">Tuliskan username kamu</string>
+    <string name="tuliskan_username">Tuliskan Username</string>
+    <string name="kembali">Kembali</string>
+    <string name="list_kepingin_main">List Kepingin %s (%s)</string>
+    <string name="lagi_kepingin_apa">Lagi Kepingin Apa ?</string>
+    <string name="contentdesc">contentDesc</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="link">Link</string>
+    <string name="harga_biaya">Harga/Biaya</string>
+    <string name="submit">Submit</string>
+    <string name="terbeli">Terbeli</string>
+    <string name="close">Tutup</string>
+    <string name="hello">Hello,</string>
+    <string name="kamu_punya">Kamu punya (%s) keinginan</string>
+    <string name="bantuan">Bantuan</string>
+    <string name="faq">FAQ</string>
+    <string name="desc_beta">Aplikasi masih dalam masa perkembangan atau dalam versi beta</string>
+
+</resources>
