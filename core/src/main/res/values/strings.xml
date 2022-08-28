@@ -28,5 +28,15 @@
     <string name="bantuan">Bantuan</string>
     <string name="faq">FAQ</string>
     <string name="desc_beta">Aplikasi masih dalam masa perkembangan atau dalam versi beta</string>
-
+    <string name="balance">Saldo</string>
+    <string name="total_needed">Total Dibutuhkan</string>
+    <string name="total_deposit">Total Pengeluaran</string>
+    <string name="currency_label">Rp.0</string>
+    <string name="deposit">Pengeluaran</string>
+    <string name="date_card">Tanggal Kartu</string>
+    <string name="transactions">Transaksi</string>
+    <string name="input_balance">Masukan Nominal Saldo</string>
+    <string name="month">Bulan</string>
+    <string name="pick_month">Pilih Bulan</string>
+    <string name="save">Simpan</string>
 </resources>

@@ -7,14 +7,17 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.daffa.core.data.Resource
 import com.daffa.core.ui.HomeWishlistAdapter
 import com.daffa.kepinginapa.R
 import com.daffa.kepinginapa.databinding.ActivityMainBinding
 import com.daffa.kepinginapa.ui.profile.ProfileActivity
+import com.daffa.kepinginapa.ui.wallet.WalletActivity
 import com.daffa.kepinginapa.ui.wishlist.DetailWishlistActivity
 import com.daffa.kepinginapa.ui.wishlist.InputWishlistActivity
 import com.daffa.kepinginapa.utils.Utils
+import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 when (dataUser) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        binding.tvUserName.text = dataUser.data?.userName ?: ""
+                        binding.tvUsername.text = dataUser.data?.userName ?: ""
                         val uriPathHelper = Utils.UriPathHelper()
                         val filePath = uriPathHelper.getPath(
                             this, Uri.parse(
@@ -45,7 +48,20 @@ class MainActivity : AppCompatActivity() {
                                     ?: ""
                             )
                         )
-                        binding.imgProfilePicture.setImageURI(Uri.parse(filePath))
+                        binding.imgProfileMain.setImageURI(Uri.parse(filePath))
+                    }
+                    is Resource.Error -> {}
+                }
+            }
+        }
+
+        //data wallet
+        viewModel.wallet.observe(this) { dataWallet ->
+            if (dataWallet != null) {
+                when (dataWallet) {
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        binding.tvBalance.text = dataWallet.data?.balance.formatCurrencyRupiah()
                     }
                     is Resource.Error -> {}
                 }
@@ -55,7 +71,8 @@ class MainActivity : AppCompatActivity() {
         loadWishlist()
 
         with(binding.rvHomeWishlist) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+            addItemDecoration(Utils.WishlistDecoration(this@MainActivity))
             adapter = wishlistAdapter
         }
 
@@ -70,9 +87,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentWish)
         }
 
-        binding.imgProfilePicture.setOnClickListener {
+        binding.imgProfileMain.setOnClickListener {
             val intentProfile = Intent(this, ProfileActivity::class.java)
             startActivity(intentProfile)
+        }
+
+        binding.btnWallet.setOnClickListener {
+            val intent = Intent(this, WalletActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -94,21 +116,26 @@ class MainActivity : AppCompatActivity() {
                         binding.loadingListWishlist.visibility = View.GONE
                         if (wishlist.data?.isNotEmpty() == true) {
                             binding.bgEmpty.visibility = View.GONE
-                            binding.tvListCountWishList.visibility = View.VISIBLE
+                            binding.tvListCountWishlist.visibility = View.VISIBLE
                             wishlistAdapter.setHomeWishlist(wishlist.data)
                             binding.rvHomeWishlist.visibility = View.VISIBLE
-
                             val count = wishlist.data?.count() ?: ""
-
-                            binding.tvListCountWishList.text = resources.getString(
+                            binding.tvListCountWishlist.text = resources.getString(
                                 R.string.list_kepingin_main,
                                 username,
                                 count.toString()
                             )
+                            //set total balance
+                            val total = wishlist.data?.sumOf { it.price }
+                            val wishlistBought =
+                                wishlist.data?.filter { it.bought }?.map { it.price }
+                            binding.tvTotalNeeded.text = total.formatCurrencyRupiah()
+                            binding.tvTotalDeposit.text =
+                                wishlistBought?.sum().formatCurrencyRupiah()
                         } else {
                             binding.loadingListWishlist.visibility = View.GONE
                             binding.bgEmpty.visibility = View.VISIBLE
-                            binding.tvListCountWishList.visibility = View.GONE
+                            binding.tvListCountWishlist.visibility = View.GONE
                             binding.rvHomeWishlist.visibility = View.GONE
                         }
                     }

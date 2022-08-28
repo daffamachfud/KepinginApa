@@ -2,8 +2,10 @@ package com.daffa.core.data.source.local
 
 import androidx.lifecycle.LiveData
 import com.daffa.core.data.source.local.entity.UserEntity
+import com.daffa.core.data.source.local.entity.WalletEntity
 import com.daffa.core.data.source.local.entity.WishlistEntity
 import com.daffa.core.data.source.local.room.AppDao
+import com.daffa.core.domain.model.Wallet
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,6 +16,8 @@ class LocalDataSource @Inject constructor(private val appDao: AppDao) {
 
     suspend fun insertWish(wish: WishlistEntity) = appDao.insertWish(wish)
 
+    suspend fun insertWallet(wallet: WalletEntity) = appDao.insertWallet(wallet)
+
     suspend fun deleteWish(wish: WishlistEntity) = appDao.deletedWish(wish.id)
 
     suspend fun updateBoughtWish(wishId: Int?) = appDao.updateStatusWish(wishId)
@@ -22,5 +26,5 @@ class LocalDataSource @Inject constructor(private val appDao: AppDao) {
 
     fun getWishlist(): Flow<List<WishlistEntity>> = appDao.getWishlist()
 
-    fun getDetailWish(wishId: Int): LiveData<WishlistEntity> = appDao.getDetailWish(wishId)
+    fun getWalletData(): Flow<WalletEntity> = appDao.getWalletData()
 }

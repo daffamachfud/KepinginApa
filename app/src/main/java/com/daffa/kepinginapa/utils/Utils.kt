@@ -3,6 +3,7 @@ package com.daffa.kepinginapa.utils
 import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Environment
 import android.provider.DocumentsContract
@@ -10,7 +11,9 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.EditText
+import androidx.recyclerview.widget.RecyclerView
 import nl.dionsegijn.konfetti.core.*
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.core.models.Size
@@ -20,8 +23,11 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 
 object Utils {
@@ -33,6 +39,11 @@ object Utils {
         formatRp.decimalSeparator = ','
         formatter.decimalFormatSymbols = formatRp
         return "Rp. " + formatter.format(this)
+    }
+
+    fun LocalDate?.format1(): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        return this?.format(formatter).toString()
     }
 
     class UriPathHelper {
@@ -78,7 +89,42 @@ object Utils {
                     return getDataColumn(context, contentUri, selection, selectionArgs)
                 }
             } else if ("content".equals(uri.scheme, ignoreCase = true)) {
-                return getDataColumn(context, uri, null, null)
+                // ExternalStorageProvider
+                if (isExternalStorageDocument(uri)) {
+                    val docId = DocumentsContract.getDocumentId(uri)
+                    val split = docId.split(":".toRegex()).toTypedArray()
+                    val type = split[0]
+                    if ("primary".equals(type, ignoreCase = true)) {
+                        return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
+                    }
+
+                } else if (isDownloadsDocument(uri)) {
+                    val id = DocumentsContract.getDocumentId(uri)
+                    val contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"),
+                        java.lang.Long.valueOf(id)
+                    )
+                    return getDataColumn(context, contentUri, null, null)
+                } else if (isMediaDocument(uri)) {
+                    val docId = DocumentsContract.getDocumentId(uri)
+                    val split = docId.split(":".toRegex()).toTypedArray()
+                    val type = split[0]
+                    var contentUri: Uri? = null
+                    when (type) {
+                        "image" -> {
+                            contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                        }
+                        "video" -> {
+                            contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                        }
+                        "audio" -> {
+                            contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+                        }
+                    }
+                    val selection = "_id=?"
+                    val selectionArgs = arrayOf(split[1])
+                    return getDataColumn(context, contentUri, selection, selectionArgs)
+                }
             } else if ("file".equals(uri.scheme, ignoreCase = true)) {
                 return uri.path
             }
@@ -259,4 +305,51 @@ object Utils {
             }
         }
     }
+
+    class WishlistDecoration(var context:Context): RecyclerView.ItemDecoration(){
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            super.getItemOffsets(outRect, view, parent, state)
+            super.getItemOffsets(outRect, view, parent, state)
+            val itemPosition = parent.getChildAdapterPosition(view)
+
+            if (itemPosition == 1) {
+                outRect.top = context.resources.getDimensionPixelSize(com.daffa.core.R.dimen._20sdp)
+            }
+        }
+    }
+
+    fun getMonthList():ArrayList<String> {
+        val month = LocalDate.now().monthValue
+        val monthInt = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
+        val filter = monthInt.filter{it >= month }
+        println("onresponse filter $filter")
+        val monthListName = arrayListOf<String>()
+
+        val monthName = mapOf(
+            1 to "Januari",
+            2 to "Februari",
+            3 to "Maret",
+            4 to "April",
+            5 to "Mei",
+            6 to "Juni",
+            7 to "Juli",
+            8 to "Agustus",
+            9 to "Septermber",
+            10 to "Oktober",
+            11 to "November",
+            12 to "Desember"
+        )
+
+        for (name in filter){
+            monthListName.add(monthName[name].toString())
+        }
+        println("onresponse monthListName $monthListName")
+        return monthListName
+    }
+
 }

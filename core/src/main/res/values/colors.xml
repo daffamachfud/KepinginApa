@@ -10,4 +10,6 @@
     <color name="grey_app">#BCCACD</color>
     <color name="grey_text">#7C7C7C</color>
     <color name="grey_background">#E3E3E3</color>
+    <color name="grey_text_card">#7A7A7A</color>
+    <color name="red_text_card">#C72E2E</color>
 </resources>

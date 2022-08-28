@@ -2,9 +2,9 @@ package com.daffa.core.data
 
 import com.daffa.core.data.source.local.LocalDataSource
 import com.daffa.core.domain.model.User
+import com.daffa.core.domain.model.Wallet
 import com.daffa.core.domain.model.Wishlist
 import com.daffa.core.domain.repository.IAppRepository
-import com.daffa.core.utils.AppExecutors
 import com.daffa.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -13,17 +13,6 @@ import javax.inject.Inject
 class AppRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : IAppRepository {
-
-    companion object {
-        @Volatile
-        private var instance: AppRepository? = null
-        fun getInstance(
-            localData: LocalDataSource
-        ): AppRepository =
-            instance ?: synchronized(this) {
-                instance ?: AppRepository(localData)
-            }
-    }
 
     override fun getUserData(): Flow<Resource<User>> =
         object : NetworkBoundResource<User>() {
@@ -43,6 +32,15 @@ class AppRepository @Inject constructor(
             }
         }.asFlow()
 
+    override fun getWalletData(): Flow<Resource<Wallet>> =
+        object : NetworkBoundResource<Wallet>() {
+            override fun loadFromDB(): Flow<Wallet> {
+                return localDataSource.getWalletData().map {
+                    DataMapper.mapWalletEntityToDomain(it)
+                }
+            }
+        }.asFlow()
+
     override suspend fun insertUser(user: User) {
         localDataSource.insertUser(
             DataMapper.mapUserDomainToEntity(user)
@@ -52,6 +50,12 @@ class AppRepository @Inject constructor(
     override suspend fun insertWishlist(wishlist: Wishlist) {
         localDataSource.insertWish(
             DataMapper.mapWishlistDomainToEntities(wishlist)
+        )
+    }
+
+    override suspend fun insertWallet(wallet: Wallet) {
+        localDataSource.insertWallet(
+            DataMapper.mapWalletDomainToEntities(wallet)
         )
     }
 

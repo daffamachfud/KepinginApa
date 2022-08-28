@@ -14,10 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailWishlistActivity : AppCompatActivity(), WishSuccessCallback {
 
-    companion object {
-        const val EXTRA_WISH = "extra_wish"
-    }
-
     private lateinit var binding: ActivityDetailWishlistBinding
     private val viewModel: DetailWishViewModel by viewModels()
     private lateinit var dataWish: Wishlist
@@ -58,8 +54,10 @@ class DetailWishlistActivity : AppCompatActivity(), WishSuccessCallback {
         detail?.let { dataWishlist ->
             dataWish = dataWishlist
             val uriPathHelper = Utils.UriPathHelper()
-            val filePath = uriPathHelper.getPath(this, Uri.parse(dataWishlist.imagePath))
-            binding.imgDetail.setImageURI(Uri.parse(filePath))
+            val filePath = uriPathHelper.getPath(this, Uri.parse(dataWishlist.imagePath)) ?: ""
+            if(filePath.isNotEmpty()){
+                binding.imgDetail.setImageURI(Uri.parse(filePath))
+            }
 
             binding.tvTitle.text = dataWishlist.title
             binding.tvDesc.text = dataWishlist.note
@@ -73,4 +71,10 @@ class DetailWishlistActivity : AppCompatActivity(), WishSuccessCallback {
     override fun successBought() {
         finish()
     }
+
+
+    companion object {
+        const val EXTRA_WISH = "extra_wish"
+    }
+
 }

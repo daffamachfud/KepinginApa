@@ -9,4 +9,5 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(useCase: AppUseCase) : ViewModel() {
     val user = useCase.getUserData().asLiveData()
     val wishlist = useCase.getWishList().asLiveData()
+    val wallet = useCase.getWalletData().asLiveData()
 }

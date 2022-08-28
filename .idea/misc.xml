@@ -5,15 +5,18 @@
       <map>
         <entry key="..\:/Folder Daffa/Aplikasi/Aplikasi Android/kepinginapa/app/src/main/res/layout/activity_splash_screen.xml" value="0.18819655521783182" />
         <entry key="..\:/Folder Daffa/Aplikasi/Aplikasi Android/kepinginapa/app/src/main/res/layout/home_wishlist_adapter.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/drawable/image_shadow.xml" value="0.121" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_input_data_user.xml" value="0.1598731884057971" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_landing_page.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_profile.xml" value="0.10989583333333333" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/home_wishlist_adapter.xml" value="0.2" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/category_list.xml" value="0.1" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/home_wishlist_adapter.xml" value="0.1" />
-        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/profile_wishlist_adapter.xml" value="0.1" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/drawable/background_black.xml" value="0.1345" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/drawable/ic_add_white.xml" value="0.1095" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/drawable/ic_back.xml" value="0.1345" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_input_wishlist.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/activity_wallet.xml" value="0.24479166666666666" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/app/src/main/res/layout/input_balance_dialog.xml" value="0.23697916666666666" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/drawable/background_black.xml" value="0.1345" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/home_wishlist_adapter.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/month_picker.xml" value="0.23697916666666666" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/month_picker_dialog.xml" value="0.2" />
+        <entry key="..\:/Users/User/StudioProjects/KepinginApa/core/src/main/res/layout/transaction_wishlist_adapter.xml" value="0.23802083333333332" />
       </map>
     </option>
   </component>

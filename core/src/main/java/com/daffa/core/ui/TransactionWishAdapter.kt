@@ -5,21 +5,20 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.daffa.core.databinding.HomeWishlistAdapterBinding
+import com.daffa.core.databinding.TransactionWishlistAdapterBinding
 import com.daffa.core.domain.model.Wishlist
 import com.daffa.core.utils.Utils
 import com.daffa.core.utils.Utils.formatCurrencyRupiah
 
-class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHolder>() {
-    private var listHomeWishlist = ArrayList<Wishlist>()
+class TransactionWishAdapter : RecyclerView.Adapter<TransactionWishAdapter.WishViewHolder>() {
+    private var listWish = ArrayList<Wishlist>()
     var onItemClick: ((Wishlist) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setHomeWishlist(wishlists: List<Wishlist>?) {
+    fun setWishlist(wishlists: List<Wishlist>?) {
         if (wishlists == null) return
-        this.listHomeWishlist.clear()
-        this.listHomeWishlist.addAll(wishlists)
+        this.listWish.clear()
+        this.listWish.addAll(wishlists)
 
         notifyDataSetChanged()
     }
@@ -28,19 +27,23 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
         parent: ViewGroup,
         viewType: Int
     ): WishViewHolder {
-        val homeWishlistAdapterBinding =
-            HomeWishlistAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return WishViewHolder(homeWishlistAdapterBinding)
+        val wishlistTransactionBinding =
+            TransactionWishlistAdapterBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        return WishViewHolder(wishlistTransactionBinding)
     }
 
     override fun onBindViewHolder(holder: WishViewHolder, position: Int) {
-        val wishlist = listHomeWishlist[position]
+        val wishlist = listWish[position]
         holder.bind(wishlist)
     }
 
-    override fun getItemCount(): Int = listHomeWishlist.size
+    override fun getItemCount(): Int = listWish.size
 
-    inner class WishViewHolder(private val binding: HomeWishlistAdapterBinding) :
+    inner class WishViewHolder(private val binding: TransactionWishlistAdapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(wishlist: Wishlist) {
             with(binding) {
@@ -48,19 +51,16 @@ class HomeWishlistAdapter : RecyclerView.Adapter<HomeWishlistAdapter.WishViewHol
                 val filePath =
                     uriPathHelper.getPath(binding.root.context, Uri.parse(wishlist.imagePath))
                 if (filePath != null) {
-                    imgHomeWishlist.load(Uri.parse(filePath)) {
-                        crossfade(true)
-                        crossfade(500)
-                    }
+                    imgWishTransaction.setImageURI(Uri.parse(filePath))
                 }
-                titleHomeWishlist.text = wishlist.title
-                priceHomeWishlist.text = wishlist.price.formatCurrencyRupiah()
+                tvWishlistName.text = wishlist.title
+                tvWishlistPrice.text = wishlist.price.formatCurrencyRupiah()
             }
         }
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(listHomeWishlist[adapterPosition])
+                onItemClick?.invoke(listWish[adapterPosition])
             }
         }
     }

@@ -3,6 +3,7 @@ package com.daffa.core.data.source.local.room
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.daffa.core.data.source.local.entity.UserEntity
+import com.daffa.core.data.source.local.entity.WalletEntity
 import com.daffa.core.data.source.local.entity.WishlistEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -14,6 +15,9 @@ interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWish(wish: WishlistEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertWallet(wallet:WalletEntity)
+
     @Query("SELECT * FROM user")
     fun getUserData(): Flow<UserEntity>
 
@@ -22,6 +26,9 @@ interface AppDao {
 
     @Query("SELECT * FROM wishlist WHERE id = :wishId")
     fun getDetailWish(wishId: Int): LiveData<WishlistEntity>
+
+    @Query("SELECT * FROM wallet")
+    fun getWalletData(): Flow<WalletEntity>
 
     @Query("UPDATE `wishlist` SET bought=1 WHERE id = :id")
     suspend fun updateStatusWish(id: Int?)
