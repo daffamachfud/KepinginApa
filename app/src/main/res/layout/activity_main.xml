@@ -4,47 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.home.MainActivity">
 
-    <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/img_profile_main"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="19dp"
-        app:srcCompat="@color/black" />
-
-
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="34dp"
-        android:layout_toEndOf="@+id/img_profile_main"
-        android:text="@string/username"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:ignore="RelativeOverlap" />
+        android:orientation="horizontal">
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/img_profile_main"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            app:srcCompat="@color/black" />
 
-    <ImageView
-        android:id="@+id/btn_wallet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/btn_wallet" />
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/username"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/app_name"
+            android:layout_weight="1"
+            android:src="@drawable/btn_wallet" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tv_balance_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img_profile_main"
+        android:layout_below="@+id/layout_header"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="@string/balance"

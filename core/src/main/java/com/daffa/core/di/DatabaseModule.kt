@@ -2,6 +2,8 @@ package com.daffa.core.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.daffa.core.data.source.local.room.AppDao
 import com.daffa.core.data.source.local.room.AppDatabase
 import dagger.Module
@@ -31,4 +33,14 @@ class DatabaseModule {
 
     @Provides
     fun provideTourismDao(database: AppDatabase): AppDao = database.appDao()
+
+    companion object{
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `wishlist_month` (`id` INTEGER PRIMARY KEY NOT NULL, `deviceId` TEXT NOT NULL);"
+                )
+            }
+        }
+    }
 }
