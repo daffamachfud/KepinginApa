@@ -7,30 +7,34 @@
     android:padding="24dp"
     tools:context=".ui.wishlist.InputWishlistActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables,UselessParent">
 
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:contentDescription="@string/contentdesc"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/lagi_kepingin_apa"
+            android:text="@string/kepingin_apa"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
             android:textStyle="bold" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,14 +47,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imgViewWish"
-                android:layout_width="match_parent"
-                android:layout_height="262dp"
-                android:layout_marginTop="32dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/contentdesc"
-                android:src="@drawable/bg_add_img_wish" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="260dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="14dp"
+                app:cardCornerRadius="20dp">
+                <ImageView
+                    android:id="@+id/imgViewWish"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/contentdesc"
+                    android:src="@drawable/bg_add_img_wish" />
+            </androidx.cardview.widget.CardView>
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -72,7 +84,7 @@
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +119,7 @@
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,7 +140,7 @@
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +161,7 @@
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,7 +169,7 @@
                 android:id="@+id/btnSubmitWish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_round_black"
+                android:backgroundTint="@color/black"
                 android:text="@string/submit"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/white" />

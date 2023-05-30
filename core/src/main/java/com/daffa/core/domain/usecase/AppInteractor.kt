@@ -13,6 +13,8 @@ class AppInteractor @Inject constructor(private val appRepository: IAppRepositor
 
     override fun getWishList(): Flow<Resource<List<Wishlist>>> = appRepository.getWishList()
     override fun getWalletData(): Flow<Resource<Wallet>> = appRepository.getWalletData()
+    override fun getDepositData(): Flow<Resource<Double>> = appRepository.getDepositData()
+    override fun getAllTransaction(): Flow<Resource<List<Wishlist>>> = appRepository.getAllTransaction()
 
     override suspend fun insertUser(user: User) {
         appRepository.insertUser(user)

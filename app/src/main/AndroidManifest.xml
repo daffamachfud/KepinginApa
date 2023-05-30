@@ -22,6 +22,16 @@
         android:theme="@style/Theme.KepinginApa"
         tools:ignore="DataExtractionRules">
         <activity
+            android:name=".ui.wishlistmonth.AddWishMonthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.wallet.WalletAllTransactionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
+        <activity
             android:name=".ui.wallet.WalletActivity"
             android:exported="false" />
         <activity
@@ -50,7 +60,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.home.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

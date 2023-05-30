@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.wishlistmonth.WishlistFragment">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background_wishlist_round_black">
+        
+        <Button
+            android:id="@+id/tv_date_wish"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/date_card"
+            android:background="@drawable/btn_round_white"
+            style="@style/ButtonStyleWhite"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:drawableEnd="@drawable/ic_dropdown_black_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/total_needed"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_total_needed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/price_example"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_wish"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_alignParentStart="true"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageButton
+            android:id="@+id/btn_add_wish"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/ic_add_box_black_24"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/app_name"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bgEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/contentdesc"
+            android:src="@drawable/bg_empty_wishlist"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/loadingListWishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/rv_list_wish_month"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    </RelativeLayout>
+
+
+
+    
+</LinearLayout>

@@ -19,8 +19,7 @@ import com.daffa.core.utils.CustomTypeConverter
         WishlistEntity::class,
         UserEntity::class,
         CategoryEntity::class,
-        WalletEntity::class,
-        WishlistMonthEntity::class],
+        WalletEntity::class, ],
     version = 2,
     exportSchema = false
 )

@@ -8,12 +8,12 @@ import com.google.gson.reflect.TypeToken
 class CustomTypeConverter {
 
     @TypeConverter
-    fun wishlistToString(value: ArrayList<Wishlist?>?): String? {
+    fun wishlistToString(value: Wishlist?): String? {
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun stringToWishlist(value: String?): ArrayList<Wishlist?>? {
-        return Gson().fromJson(value, object : TypeToken<ArrayList<Wishlist?>?>() {}.type)
+    fun stringToWishlist(value: String?): Wishlist? {
+        return Gson().fromJson(value, object : TypeToken<Wishlist?>() {}.type)
     }
 }

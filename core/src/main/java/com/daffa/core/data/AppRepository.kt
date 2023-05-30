@@ -4,6 +4,7 @@ import com.daffa.core.data.source.local.LocalDataSource
 import com.daffa.core.domain.model.User
 import com.daffa.core.domain.model.Wallet
 import com.daffa.core.domain.model.Wishlist
+import com.daffa.core.domain.model.WishlistMonth
 import com.daffa.core.domain.repository.IAppRepository
 import com.daffa.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
@@ -41,6 +42,31 @@ class AppRepository @Inject constructor(
             }
         }.asFlow()
 
+    override fun getDepositData(): Flow<Resource<Double>> =
+        object : NetworkBoundResource<Double>() {
+            override fun loadFromDB(): Flow<Double> {
+                return localDataSource.getDepositData()
+            }
+        }.asFlow()
+
+    override fun getAllTransaction(): Flow<Resource<List<Wishlist>>> =
+        object : NetworkBoundResource<List<Wishlist>>() {
+            override fun loadFromDB(): Flow<List<Wishlist>> {
+                return localDataSource.getAllTransaction().map {
+                    DataMapper.mapWishlistEntityToDomain(it)
+                }
+            }
+        }.asFlow()
+
+//    override fun getWishlistMonth(month:Int): Flow<Resource<List<Wishlist>>> =
+//        object : NetworkBoundResource<List<Wishlist>>() {
+//            override fun loadFromDB(): Flow<List<Wishlist>> {
+//                return localDataSource.getWishlistMonth(month).map {
+//                    DataMapper.mapWishlistEntityToDomain(it)
+//                }
+//            }
+//        }.asFlow()
+
     override suspend fun insertUser(user: User) {
         localDataSource.insertUser(
             DataMapper.mapUserDomainToEntity(user)
@@ -64,55 +90,14 @@ class AppRepository @Inject constructor(
         localDataSource.deleteWish(wishEntity)
     }
 
+//    override suspend fun insertWishlistMonth(wishlistMonth: WishlistMonth) {
+//        localDataSource.insertWishlistMont(
+//            DataMapper.mapWishlistMonthDomainToEntities(wishlistMonth)
+//        )
+//    }
+
     override suspend fun updateBoughtWish(wishId: Int) {
         localDataSource.updateBoughtWish(wishId)
     }
-
-
-//    override fun getUserData(): LiveData<Resource<UserEntity>> {
-//        return object : NetworkBoundResource<UserEntity>(){
-//            override fun loadFromDB(): LiveData<UserEntity> = localDataSource.getUserData()
-//        }.asLiveData()
-//    }
-//
-//    override fun getWishlist(): LiveData<Resource<List<WishlistEntity>>> {
-//        return object : NetworkBoundResource<List<WishlistEntity>>(){
-//            override fun loadFromDB(): LiveData<List<WishlistEntity>> = localDataSource.getWishlist()
-//        }.asLiveData()
-//    }
-//
-//    override fun getDetailWish(wishId: Int): LiveData<Resource<WishlistEntity>> {
-//        return object : NetworkBoundResource<WishlistEntity>() {
-//            override fun loadFromDB(): LiveData<WishlistEntity> =
-//                localDataSource.getDetailWish(wishId)
-//        }.asLiveData()
-//    }
-//
-//
-//    override fun insertUser(user: UserEntity) {
-//        val runnable = { localDataSource.insertUser(user) }
-//        appExecutors.diskIO().execute(runnable)
-//    }
-//
-//    override fun insertWishlist(wish: WishlistEntity) {
-//        val runnable = {
-//            localDataSource.insertWish(wish)
-//        }
-//        appExecutors.diskIO().execute(runnable)
-//    }
-//
-//    override fun deleteWish(wish: WishlistEntity) {
-//        val runnable = {
-//            localDataSource.deleteWish(wish)
-//        }
-//        appExecutors.diskIO().execute(runnable)
-//    }
-//
-//    override fun updateBoughtWish(wish: WishlistEntity) {
-//        val runnable = {
-//            localDataSource.updateBoughtWish(wish.id)
-//        }
-//        appExecutors.diskIO().execute(runnable)
-//    }
 
 }

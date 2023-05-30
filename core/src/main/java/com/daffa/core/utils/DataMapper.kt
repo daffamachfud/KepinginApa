@@ -3,9 +3,11 @@ package com.daffa.core.utils
 import com.daffa.core.data.source.local.entity.UserEntity
 import com.daffa.core.data.source.local.entity.WalletEntity
 import com.daffa.core.data.source.local.entity.WishlistEntity
+import com.daffa.core.data.source.local.entity.WishlistMonthEntity
 import com.daffa.core.domain.model.User
 import com.daffa.core.domain.model.Wallet
 import com.daffa.core.domain.model.Wishlist
+import com.daffa.core.domain.model.WishlistMonth
 
 
 object DataMapper {
@@ -62,6 +64,18 @@ object DataMapper {
         date = input.date,
         balance = input.balance
     )
+
+//    fun mapWishlistMonthEntityToDomain(input: WishlistMonthEntity?) = WishlistMonth(
+//        id = input?.id ?: 0,
+//        month = input?.month ?: 0,
+//        wishlistId = input?.wishlistId ?: 0
+//    )
+//
+//    fun mapWishlistMonthDomainToEntities(input: WishlistMonth) = WishlistMonthEntity(
+//        id = input.id,
+//        month = input.month,
+//        wishlistId = input.wishlistId
+//    )
 
 
 }

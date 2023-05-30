@@ -6,8 +6,9 @@ import com.daffa.core.domain.usecase.AppUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 @HiltViewModel
-class MainViewModel @Inject constructor(useCase: AppUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(val useCase: AppUseCase) : ViewModel() {
     val user = useCase.getUserData().asLiveData()
     val wishlist = useCase.getWishList().asLiveData()
     val wallet = useCase.getWalletData().asLiveData()
+
 }

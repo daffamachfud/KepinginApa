@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_title_input_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_balance"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_input_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/tv_title_input_balance">
+
+            <EditText
+                android:id="@+id/et_input_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:gravity="center"
+                android:hint="@string/balance"
+                android:inputType="number"
+                android:maxLength="32"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save_input_balance"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="@string/save"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

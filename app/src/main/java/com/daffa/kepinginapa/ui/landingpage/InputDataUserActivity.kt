@@ -13,8 +13,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.daffa.kepinginapa.MainActivity
 import com.daffa.kepinginapa.databinding.ActivityInputDataUserBinding
-import com.daffa.kepinginapa.ui.home.MainActivity
 import com.daffa.kepinginapa.utils.DialogLoading
 import dagger.hilt.android.AndroidEntryPoint
 

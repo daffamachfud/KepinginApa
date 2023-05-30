@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "wallet")
 data class WalletEntity(
     @PrimaryKey
-    @NonNull
     @ColumnInfo(name = "id")
     var id:Int?,
 

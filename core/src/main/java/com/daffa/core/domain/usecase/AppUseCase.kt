@@ -10,6 +10,9 @@ interface AppUseCase {
     fun getUserData(): Flow<Resource<User>>
     fun getWishList():Flow<Resource<List<Wishlist>>>
     fun getWalletData():Flow<Resource<Wallet>>
+    fun getDepositData():Flow<Resource<Double>>
+
+    fun getAllTransaction(): Flow<Resource<List<Wishlist>>>
 
    suspend fun insertUser(user:User)
     suspend fun insertWish(wishlist: Wishlist)

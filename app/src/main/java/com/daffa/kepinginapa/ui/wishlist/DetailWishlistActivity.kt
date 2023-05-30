@@ -48,6 +48,10 @@ class DetailWishlistActivity : AppCompatActivity(), WishSuccessCallback {
                 supportFragmentManager, ""
             )
         }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun showDetailWishlist(detail: Wishlist?) {

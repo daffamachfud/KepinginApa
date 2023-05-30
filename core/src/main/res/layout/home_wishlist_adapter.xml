@@ -8,10 +8,10 @@
     android:layout_marginBottom="8dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_155sdp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:cardBackgroundColor="@color/black"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/imgHomeWishlist"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_230sdp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:scaleType="fitXY"
                 android:contentDescription="@string/contentdesc"
                 app:layout_constraintDimensionRatio=""
@@ -37,8 +37,8 @@
 
             <View
                 android:id="@+id/viewPersonImage"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_230sdp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 app:layout_constraintDimensionRatio=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

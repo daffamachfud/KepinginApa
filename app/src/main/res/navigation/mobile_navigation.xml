@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.daffa.kepinginapa.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_wishlist"
+        android:name="com.daffa.kepinginapa.ui.wishlistmonth.WishlistFragment"
+        android:label="@string/desc_img_home_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/navigation_wallet"
+        android:name="com.daffa.kepinginapa.ui.wallet.WalletFragment"
+        android:label="@string/title_wallet"
+        tools:layout="@layout/fragment_wallet" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.daffa.kepinginapa.ui.profile.FaqDialogFragment"
+        android:label="@string/profil"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

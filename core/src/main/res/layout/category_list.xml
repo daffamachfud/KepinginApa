@@ -7,5 +7,5 @@
     android:paddingEnd="16dp"
     android:paddingBottom="8dp"
     android:textColor="@android:color/black"
-    android:textSize="24sp"
+    android:textSize="16sp"
     android:textStyle="bold"/>

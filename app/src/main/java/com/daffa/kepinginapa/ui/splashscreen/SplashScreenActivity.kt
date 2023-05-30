@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.daffa.kepinginapa.MainActivity
 import com.daffa.kepinginapa.databinding.ActivitySplashScreenBinding
-import com.daffa.kepinginapa.ui.home.MainActivity
 import com.daffa.kepinginapa.ui.landingpage.LandingPageActivity
 import com.daffa.kepinginapa.utils.AppPreference
 

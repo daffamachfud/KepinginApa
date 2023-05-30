@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_wish_transaction"
             android:layout_width="wrap_content"
@@ -19,38 +20,40 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="10dp">
+
             <ImageView
+                android:id="@+id/img_wish_transaction"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:id="@+id/img_wish_transaction"
-                android:src="@color/grey_app"
-                android:contentDescription="@string/app_name" />
+                android:scaleType="fitXY"
+                android:contentDescription="@string/app_name"
+                android:src="@color/grey_app" />
+
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/tv_wishlist_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_wishlist_name"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/card_wish_transaction"
             android:text="@string/title"
-            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:layout_toEndOf="@+id/card_wish_transaction"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"/>
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_wishlist_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_wishlist_price"
-            android:text="@string/currency_label"
-            android:textSize="14sp"
-            android:textColor="@color/grey_text_card"
-            android:textStyle="bold"
             android:layout_below="@+id/tv_wishlist_name"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/card_wish_transaction"
-            android:layout_marginStart="16dp"/>
-
+            android:text="@string/currency_label"
+            android:textColor="@color/grey_text_card"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

@@ -3,17 +3,18 @@ package com.daffa.kepinginapa.ui.home
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.daffa.core.data.Resource
 import com.daffa.core.ui.HomeWishlistAdapter
-import com.daffa.kepinginapa.R
-import com.daffa.kepinginapa.databinding.ActivityMainBinding
-import com.daffa.kepinginapa.ui.profile.ProfileActivity
-import com.daffa.kepinginapa.ui.wallet.WalletActivity
+import com.daffa.kepinginapa.databinding.ActivityWalletBinding
+import com.daffa.kepinginapa.databinding.FragmentHomeBinding
 import com.daffa.kepinginapa.ui.wishlist.DetailWishlistActivity
 import com.daffa.kepinginapa.ui.wishlist.InputWishlistActivity
 import com.daffa.kepinginapa.utils.Utils
@@ -21,34 +22,37 @@ import com.daffa.kepinginapa.utils.Utils.formatCurrencyRupiah
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class HomeFragment : Fragment() {
+
+    private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
     private val wishlistAdapter = HomeWishlistAdapter()
-    private var username = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
 
-        //load data page
-        //data user
-        viewModel.user.observe(this) { dataUser ->
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        viewModel.user.observe(requireActivity()) { dataUser ->
             if (dataUser != null) {
                 when (dataUser) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        binding.tvUsername.text = dataUser.data?.userName ?: ""
+                        binding.tvUsernameHome.text = dataUser.data?.userName ?: ""
                         val uriPathHelper = Utils.UriPathHelper()
                         val filePath = uriPathHelper.getPath(
-                            this, Uri.parse(
+                            requireActivity(), Uri.parse(
                                 dataUser.data?.profilePicture
                                     ?: ""
                             )
                         )
-                        binding.imgProfileMain.setImageURI(Uri.parse(filePath))
+                        try {
+                            binding.imgProfileHome.setImageURI(Uri.parse(filePath))
+                        }catch (e:Exception){
+                            Log.e("HoemFragment","Error = ${e.localizedMessage}")
+                        }
                     }
                     is Resource.Error -> {}
                 }
@@ -56,12 +60,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         //data wallet
-        viewModel.wallet.observe(this) { dataWallet ->
+        viewModel.wallet.observe(requireActivity()) { dataWallet ->
             if (dataWallet != null) {
                 when (dataWallet) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        binding.tvBalance.text = dataWallet.data?.balance.formatCurrencyRupiah()
+                        binding.tvTotalNeeded.text = dataWallet.data?.balance.formatCurrencyRupiah()
                     }
                     is Resource.Error -> {}
                 }
@@ -70,42 +74,31 @@ class MainActivity : AppCompatActivity() {
 
         loadWishlist()
 
-        with(binding.rvHomeWishlist) {
-            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-            addItemDecoration(Utils.WishlistDecoration(this@MainActivity))
-            adapter = wishlistAdapter
+        with(binding.rvWishlistHome) {
+            this.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+//            this?.addItemDecoration(Utils.WishlistDecoration(requireContext()))
+            this.adapter = wishlistAdapter
+
         }
 
         wishlistAdapter.onItemClick = { select ->
-            val intent = Intent(this, DetailWishlistActivity::class.java)
+            val intent = Intent(requireActivity(), DetailWishlistActivity::class.java)
             intent.putExtra(DetailWishlistActivity.EXTRA_WISH, select)
             startActivity(intent)
         }
 
-        binding.fab.setOnClickListener {
-            val intentWish = Intent(this, InputWishlistActivity::class.java)
-            startActivity(intentWish)
-        }
-
-        binding.imgProfileMain.setOnClickListener {
-            val intentProfile = Intent(this, ProfileActivity::class.java)
-            startActivity(intentProfile)
-        }
-
-        binding.btnWallet.setOnClickListener {
-            val intent = Intent(this, WalletActivity::class.java)
+        binding.btnAddWishlist.setOnClickListener {
+            val intent = Intent(requireActivity(),InputWishlistActivity::class.java)
             startActivity(intent)
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-        loadWishlist()
+
+        return binding.root
     }
 
     private fun loadWishlist() {
         //data wishlist
-        viewModel.wishlist.observe(this) { wishlist ->
+        viewModel.wishlist.observe(requireActivity()) { wishlist ->
             if (wishlist != null) {
                 when (wishlist) {
                     is Resource.Loading -> {
@@ -116,15 +109,9 @@ class MainActivity : AppCompatActivity() {
                         binding.loadingListWishlist.visibility = View.GONE
                         if (wishlist.data?.isNotEmpty() == true) {
                             binding.bgEmpty.visibility = View.GONE
-                            binding.tvListCountWishlist.visibility = View.VISIBLE
                             wishlistAdapter.setHomeWishlist(wishlist.data)
-                            binding.rvHomeWishlist.visibility = View.VISIBLE
-                            val count = wishlist.data?.count() ?: ""
-                            binding.tvListCountWishlist.text = resources.getString(
-                                R.string.list_kepingin_main,
-                                username,
-                                count.toString()
-                            )
+                            binding.rvWishlistHome.visibility = View.VISIBLE
+
                             //set total balance
                             val total = wishlist.data?.sumOf { it.price }
                             val wishlistBought =
@@ -135,13 +122,16 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             binding.loadingListWishlist.visibility = View.GONE
                             binding.bgEmpty.visibility = View.VISIBLE
-                            binding.tvListCountWishlist.visibility = View.GONE
-                            binding.rvHomeWishlist.visibility = View.GONE
+                            binding.rvWishlistHome.visibility = View.GONE
                         }
                     }
                     is Resource.Error -> {}
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }

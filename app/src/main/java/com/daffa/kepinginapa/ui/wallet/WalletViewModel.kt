@@ -14,9 +14,13 @@ class WalletViewModel @Inject constructor(val useCase: AppUseCase) : ViewModel()
     val wishlist = useCase.getWishList().asLiveData()
     val wallet = useCase.getWalletData().asLiveData()
 
+    val listTransaction = useCase.getAllTransaction().asLiveData()
+
     fun inputWallet(wallet: Wallet) {
         viewModelScope.launch {
             useCase.insertWallet(wallet)
         }
     }
+
+    val getDeposit = useCase.getDepositData().asLiveData()
 }
